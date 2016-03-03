@@ -1,0 +1,18 @@
+{
+    "name": "kapilpatel20/bvcms",
+    "description": "A Role Base Permission with fos userbundle",
+    "type": "symfony-bundle",
+    "homepage": "https://github.com/kapilpatel20/bvcms",
+    "authors": [{
+            "name": "Kapil",
+            "email": "kapil.patel@brainvire.com"
+        }],
+    "keywords": [
+        "CMS Management bundle"
+    ],
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {"BvCmsBundle\\": ""}
+    },
+    "minimum-stability": "dev"
+}

@@ -1,0 +1,33 @@
+bv_cms_list:
+    pattern:  /cms-list
+    defaults: { _controller: BvCmsBundle:Pages:index }
+    # host:     %admin_base_host% 
+    
+bv_add_cms:
+    pattern:  /add-page
+    defaults: { _controller: BvCmsBundle:Pages:new }
+    # host:     %admin_base_host% 
+
+bv_cms_edit:
+    pattern:  /cms-edit/{id}
+    defaults: { _controller: BvCmsBundle:Pages:edit }
+    # host:     %admin_base_host% 
+    
+bv_cms_detail:
+    pattern:  /cms-detail/{id}
+    defaults: { _controller: BvCmsBundle:Pages:detail }   
+    # host:     %admin_base_host% 
+    
+bv_cms_grid_list:
+    pattern:  /cms-grid-list
+    defaults: { _controller: BvCmsBundle:Pages:cmsListJson }
+    # host:     %admin_base_host% 
+    
+bv_cms_delete:
+    pattern:  /cms-delete
+    defaults: { _controller: BvCmsBundle:Pages:delete }
+    # host:     %admin_base_host% 
+    
+bv_cms_change_status:
+    pattern:  /cms-status
+    defaults: { _controller: BvCmsBundle:Pages:status }

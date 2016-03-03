@@ -1,0 +1,55 @@
+{# {% set module= %}#}
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">{{ module }} List</h3>
+
+        <!-- Flash Messages -->
+        {% block sidebar %} {{ include('BvCmsBundle::flashMessage.html.twig' ) }} {% endblock %}
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <div class="dataTables_wrapper form-inline dt-bootstrap" id="example1_wrapper">
+            <div class="row">
+                <form action="{{ path('bv_admin_'~(module|lower)) }}" method="get" id="headerSearch">
+                    <div class="col-sm-3">
+                        <div class="dataTables_filter" id="example1_filter">
+                            <div class="input-group" style="width: 100%;">
+                                <input id="searchbox" name="table_search" class="form-control input-sm pull-right" placeholder="Search" type="text" value="{{ app.request.get('searchTerm') }}" >
+                                {# 							</form>#}
+                                <div class="input-group-btn">
+                                    <button class="btn btn-sm btn-default">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div id="example1_length" class="dataTables_length">
+                            Filter &nbsp; 
+                            <select id="changeOrder" class="form-control input-sm" aria-controls="example1" name="example1_length">
+                                <option value="ASC">A-Z</option>
+                                <option value="DESC">Z-A</option>
+                                <option value="NEW">Newest-Oldest</option>
+                                <option value="OLD">Oldest-Newest</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="col-sm-3 pull-right">
+                    <a href="{{ path('bv_admin_'~(module|lower)~'_export', { 'orderBy': app.request.get('orderBy'), 'searchTerm': app.request.get('searchTerm') }) }}">
+                        <button class="btn btn-block btn-info">Export</button>
+                    </a>
+                </div>
+                <div class="col-sm-3 pull-right">
+                    {# 					{% set addUrl = 'disney_admin_add_'~module|lower %}#}
+                    <a href="{{ path('bv_admin_'~(module|lower)~'_add') }}"><button class="btn btn-block btn-info ">Add {{ module }}</button></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- /.box-body -->
+</div>

@@ -1,0 +1,119 @@
+@media screen and (max-width: 1200px) {
+h5.mainTitle{padding:5px 0;margin:0;}
+.customer_view_dtail_tab > .nav-tabs > li{min-width:auto;}
+.edit_Busprofile_tab > .nav-tabs > li a{padding:14px 8px;font-size:11px;}
+.custmr_contct_info{width:32%;}
+.responsive_table{width:100%; overflow-x:scroll;padding-bottom:20px;}
+
+/*prt_chng*/
+.table tr td:last-child .btn-group{width:100px;}
+.table tr th .action_icon{width:100px;}
+.payoptform .payableAmt,.payoptform .form-group input[type="text"]{width:86%;}
+.payDetform .ExpMonthWrapper{margin-right:5px;}
+.payoptform .form-group label{font-size:12px;margin-top:5px;}
+/*Pushpak*/
+.drakgrayBg .btn-group{ width: 78px;}
+.drakgrayBg .btn-group .currentLab {  width:63px; font-size:10px; padding:6px 3px; }
+.drakgrayBg .btn-group .dropdown-toggle {   width:15px; padding: 3px 0;}
+.content-header>h1,h4.mainTitle{font-size:18px;}
+}
+
+@media screen and (max-width: 1023px) {
+.payoptform .form-group input[type="text"],.payoptform .payableAmt{width:83%;}
+
+}
+
+@media screen and (max-width: 989px) {
+.selectplancont .selpricemodual{margin:5px auto;	}
+.custmr_view_dtail figure{margin-bottom:10px;}
+
+/*prt css*/
+.customer_view_dtail_tab .nav-tabs > li > a{padding:10px 10px;}
+.payDetform .ExpMonthWrapper{margin-right:5px;}
+.payoptform .payableAmt{width:145px;}
+
+/* pushpak css */
+.payoptform .form-group label, .payDetform label { font-size:11px; text-align:left; }
+.customer_view_dtail_tab .hoursLeft ul li span { text-align:left; }
+}
+
+@media screen and (max-width: 900px) {
+.custmr_view_dtail{width:50%;}
+.custmr_contct_info{width:auto;}
+
+/*prt*/
+.customer_view_dtail_tab .hoursLeft,.customer_view_dtail_tab .aboutRight{width:50%;}
+.payoptform .form-group label{margin-top:10px;}
+
+/* pushpak css */
+.stylishradio label { font-size:11px; }
+.customer_view_dtail_tab .nav-tabs > li > a { font-size:11px; }
+
+}
+
+@media screen and (max-width: 767px) {
+.custmr_view_dtail{width:58%;}
+.custmr_contct_info{width:42%;}
+/*prt css*/
+.customer_view_dtail_tab .nav-tabs > li > a{padding:10px 8px;font-size:13px;}
+.payoptform .form-group label{text-align:left;}
+.customer_view_dtail_tab .rating_box{margin:5px auto;}
+.custmr_contct_info{width:auto;}
+/* pushpak css */
+.stepwizard-four-col .stepwizard-step p { font-size:14px; }
+
+}
+
+@media screen and (max-width: 600px) {
+.custmr_view_dtail{width:100%;}
+.custmr_contct_info{width:100%;}
+.menu_dtail_new figure{width:25%;}
+.menu_dtail_new p{width:70%;}
+.customer_view_dtail_tab .view_edit_protos ul li{width:50%;}
+.payoptform .payableAmt{width:100px;}
+.customer_view_dtail_tab > .nav-tabs > li{width:100%;text-align:left;}
+
+.edit_picture_box{width:49%;}
+/*prt css*/
+div.dataTables_paginate{text-align:left;margin:5px auto;}
+div.dataTables_info{text-align:left;}
+.payoptform .form-group label{text-align:left;}
+
+/* pushpak css */
+h4 .btn {   display: inline-block; margin-bottom: 10px; margin-top: 10px; width: auto !important; }
+.userProfileDetLeft, .userProfileDetRight { width:100%; padding:0; }
+.userProfileDetLeft figure { text-align:center; }
+.userProfileDetLeft figure img { max-width:100%; width:auto; margin:auto;  }
+.rightbtn .btn { font-size:11px; margin:0 0 10px;float:none !important; }
+
+}
+
+
+@media screen and (max-width: 479px) {
+.customer_view_dtail_tab > .nav-tabs > li{min-width:100%;text-align:left;}
+.customer_view_dtail_tab > .nav-tabs > li{width:100%;text-align:left !important;}
+.payoptform .form-group label{font-size:11px;	}
+.menu_dtail_new figure,.menu_dtail_new p,.detailsSubListDet .detailsDescription figure,.detailsSubListDet .detailsDescription article{width:100%;max-width:100%;}
+.detailsSubListDet .detailsTested ul.testedValue,.detailsSubListDet .detailsTested ul.testedData{width:100%;}
+h4.mainTitle  .btn {width:45%;font-size:11px;}
+/*prt*/
+.customer_view_dtail_tab .hoursLeft,.customer_view_dtail_tab .aboutRight{width:100%;padding:0;}
+.edit_picture_box{width:100%;}
+.stepwizard-step{width:100%;display:block;}
+.customer_view_dtail_tab .view_edit_protos ul li{width:100%;}
+.edit_profile_tab > .nav-tabs > li{width:100%;}
+table.working_hours_table{display:table;}
+table.working_hours_table tr td{display:table;border:none;}
+table.working_hours_table tr td:first-child label.control-label{padding:5px 0;margin-top:10px;}
+.right_side_title_btn{margin-top:5px; margin-bottom:10px;}
+h4{font-size:16px;}
+
+/* pushpak css */
+.stepwizard-four-col .stepwizard-step { display: inline-block; width:100%; }
+.payDetform .ExpMonthWrapper { margin-right:7px; }
+.payoptform .form-group input[type="text"] { width:66%; }
+.customer_view_dtail_tab  table.workhours { width:400px; max-width:400px; }
+.customer_view_dtail_tab > .nav-tabs > li { max-width:100%; width:100%; }
+.right_side_chkall { width:auto; }
+
+}

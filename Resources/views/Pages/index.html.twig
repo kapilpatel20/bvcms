@@ -1,0 +1,172 @@
+{% extends "BvCmsBundle::base.html.twig" %}
+
+{% block body %}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        CMS Management
+
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">CMS Management</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+        {% include "BvCmsBundle::flashMessage.html.twig" %}
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">CMS Pages List</h3>
+        </div><!-- /.box-header -->
+    
+    </div>
+
+    <div class="box">
+        <div class="box-body table-responsive">
+            <div class="col-sm-12 social-auth-links">
+                <table id="cmsTable" class="table dataTable table-hover table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <h4 class="modal-title"><i class="fa fa-exclamation-triangle"></i>  Are you sure you want to delete device ?</h4>
+                </div>
+                <div class="modal-footer">
+                    <div>
+                        <button type="button" class="btn  btn-info " data-dismiss="modal">Ok</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div>
+    </div>
+
+</section><!-- /.content -->
+{% endblock body %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        deleteAjaxSource = '{{ path('bv_cms_delete') }}';
+
+        statusAjaxSource = '{{ path('bv_cms_change_status') }}';
+
+        dTable = $('#cmsTable').dataTable({
+            "oLanguage": {
+                "sLengthMenu": "Display _MENU_ Records",
+                "sZeroRecords": "<center>No Record Found!</center>",
+                "sInfo": "Showing _START_ to _END_ of _TOTAL_ Records",
+                "sInfoEmpty": "Showing 0 to 0 of 0 records",
+                "sInfoFiltered": "(filtered from _MAX_ total records)"
+            },
+            bstateSave: true,
+            responsive: true,
+            bJQueryUI: false,
+            bProcessing: true,
+            bServerSide: true,
+            bFilter: true,
+            //multipleSelection: true,
+            iDisplayLength: 10,
+            sAjaxSource: '{{path('bv_cms_grid_list')}}',
+            aoColumns: [
+                {"sName": "Name"},
+                {"sName": "Status", "bSortable": false, "bSearchable": false, },
+                {"sName": "Id", "bSearchable": false, "bSortable": false}
+            ],
+            aoColumnDefs: [
+                {
+                    "mRender": function(data, type, row) {
+                        var detailUrl = "{{ path('bv_cms_detail', {'id': 'cms_id'})}}";
+                        var fullDetailUrl = detailUrl.replace('cms_id', row[2]);
+
+                        var editUrl = "{{ path('bv_cms_edit', {'id': 'cms_id'})}}";
+                        var fullEditUrl = editUrl.replace('cms_id', row[2]);
+
+                        var deleteUrl = "{{ path('bv_cms_delete', {'id': 'cms_id'})}}";
+                        var fullDeleteUrl = deleteUrl.replace('cms_id', row[2]);
+
+                        var statusUrl = "{{ path('bv_cms_change_status', {'id': 'cms_id'})}}";
+                        var fullStatusUrl = statusUrl.replace('cms_id', row[2]);
+
+                        var status = (row[1] == 'Active') ? 'InActive' : 'Active';
+                        var returnData = '';
+
+                        returnData += "<a href='" + fullEditUrl + "'data-toggle='tooltip' data-original-title='Edit'><img src='{{ asset('bundles/bvcms/dist/img/edit-icon.png') }}' width='20' height='20'></a>&nbsp;";
+                        returnData += "<a href='" + fullDetailUrl + "'data-toggle='tooltip' data-original-title='View Detail'><img src='{{ asset('bundles/bvcms/dist/img/unhide-icon.png') }}' width='20' height='20'></a>&nbsp;";
+
+                        if (status == 'Active') {
+                            returnData += "<a href='javascript:void(0);'data-toggle='tooltip' data-original-title='Mark As " + status + "' onclick='activeInactiverecord(" + row[5] + ",\"\",\"" + fullStatusUrl + "\",\"Alert\",\"Are you sure you want to mark it as " + status + "?\")'><img src='{{ asset('bundles/bvcms/dist/img/hide-icon.png') }}' width='20' height='20'></a>&nbsp;";
+                        } else {
+                            returnData += "<a href='javascript:void(0);'data-toggle='tooltip' data-original-title='Mark As " + status + "' onclick='activeInactiverecord(" + row[5] + ",\"\",\"" + fullStatusUrl + "\",\"Alert\",\"Are you sure you want to mark it as " + status + "?\")'><img src='{{ asset('bundles/bvcms/dist/img/unhide-icon.png') }}' width='20' height='20'></a>&nbsp;";
+                        }
+
+                        //returnData +="<a href='javascript:void(0);'data-toggle='tooltip' data-original-title='Delete' onclick='deleterecord("+row[5]+",\"Alert\",\"Are you sure you want to delete?\")'><img src='{{ asset('bundles/bvcms/dist/img/delete-icon.png') }}' width='20' height='20'></a>&nbsp;";
+                        return returnData;
+
+                    },
+                    "aTargets": [2]
+                }
+            ],
+            aaSorting: [[0, 'desc']],
+        });
+
+       /* $('#cmsTable').dataTable().columnFilter({
+            //sPlaceHolder: "head:after",
+            aoColumns: [
+                {type: "text", sSelector: "#serName"},
+                null,
+                null,
+            ]
+        });*/
+
+        $("input").addClass("form-control");
+        $("select").addClass("form-control");
+    });
+</script>
+<script>
+    $(function() {
+        $(".dataTable").wrap("<div class='responsive_table'></div>");
+
+        var dataTable = $('#cmsTable').dataTable();
+/*        $("#searchbox").keyup(function() {
+            dataTable.fnFilter(this.value);
+        });*/
+
+       
+
+        $('#changeOrder').change(function() {
+            var OptionVal = $(this).val();
+            //alert(OptionVal);
+            if (OptionVal == 'NEW') {
+                dataTable.fnSort([[0, 'asc']]);
+            } else if (OptionVal == 'OLD') {
+                dataTable.fnSort([[0, 'desc']]);
+            } else {
+                dataTable.fnSort([[1, OptionVal]]);
+            }
+        });
+    });
+    
+</script>
+{% endblock javascripts %}

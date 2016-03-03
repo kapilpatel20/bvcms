@@ -1,0 +1,7 @@
+services:
+#    bv_cms.example:
+#        class: BvCmsBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+      grid_helper_function:
+        class: 'BvCmsBundle\Helper\GridFunction'
+        arguments:  [@doctrine]

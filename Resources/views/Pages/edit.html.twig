@@ -1,0 +1,109 @@
+{% extends "BvCmsBundle::base.html.twig" %}
+{% block body %}
+
+    <section class="content-header">
+        <h1 class="mainTitle text-uppercase">
+            Edit Cms Page
+        </h1>
+        <ol class="breadcrumb">
+            <li>
+                <a href="{#{ path('dashboard') }#}">
+                    <i class="fa fa-dashboard"></i>
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('bv_cms_list')}}">Manage Cms Pages</a>
+            </li>
+            <li class="active">
+                Edit Cms Page
+            </li>
+        </ol>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="box box-primary">
+                    <form action="{{ path('bv_cms_edit', {'id': id}) }}" {{ form_enctype(form) }} method="POST" id="cms_page" novalidate>
+                        <div class="box-body">
+                        	<div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label">Name<span class="">*</span></label>
+	                                {{ form_widget(form.name, { 'attr': {'class': 'form-control', 'placeholder': 'Cms page name','readonly':'true'}}) }}
+	                                <span class="text-danger">{% if form_errors(form.name) %}{{ form_errors(form.name) }}{% endif %}</span>
+	                            </div>
+                        	
+                                   
+                                    <div class="form-group col-md-12">
+                                        <label class="control-label">Content<span class="required">*</span></label>
+                                        {{ form_widget(form.content, { 'attr': {'class': 'ckeditor'}}) }}
+                                        <span class="text-danger">{% if form_errors(form.content) %}{{ form_errors(form.content) }}{% endif %}</span>
+                                    </div>
+                                    
+                                    <div class="form-group col-md-2">
+                                        <label class="control-label">Status<span class="">*</span></label>
+	                                {{ form_widget(form.status, { 'attr': {'class': 'form-control', 'placeholder': ''}}) }}
+	                                <span class="text-danger">{% if form_errors(form.status) %}{{ form_errors(form.status) }}{% endif %}</span>
+	                            </div>
+                                    
+                        	</div>
+                        	
+                        </div>
+                        <div class="box-footer">
+                            {{form_rest(form)}}
+                            <input type="submit" class="btn btn-primary" value="Submit">
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+       
+    </section>
+
+
+{% endblock body %}
+{% block javascripts %}
+     {{ parent() }}
+
+<!-- BOOTSTRAP WYSIWYG -->
+ 
+ <script type="text/javascript">
+    $(document).ready(function() {
+        
+        $('#cms_page').validate({
+            errorClass: "text-danger",
+            ignore: [],
+            rules: {
+                "bragshare_admin_cms_pages[name]": {
+                    "required": true
+                },
+                "bragshare_admin_cms_pages[content]": {
+                    required: function(textarea) {
+                        CKEDITOR.instances.dispensaries_admin_cms_pages_content.updateElement();
+                        var editorcontent = textarea.value.replace(/<[^>]*>/gi, '').replace(/&nbsp;/gi, ''); // strip tags
+                        return editorcontent.trim().length === '0';
+                    },
+                    'noempty': true
+                }
+                
+            },
+            messages: {
+                 "bragshare_admin_cms_pages[name]": {
+                    "required": "Please enter page name"
+                },
+                "bragshare_admin_cms_pages[content]": {
+                    "required": "Please enter page content",
+                    "noempty": "Please enter page content"
+                }
+            }
+        });
+        
+        $.validator.addMethod("noempty", function (value, element) {
+            return value.replace(/<[^>]*>/gi, '').replace(/&nbsp;/gi, '').trim();
+        });
+        
+    });
+</script>
+
+{% endblock javascripts %}
